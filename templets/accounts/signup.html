@@ -1,0 +1,42 @@
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<div class="card-auth-card">
+    <h1>Create an Account</h1>
+
+```
+<form method="POST" class="style-form">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+        <p>
+            <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+            </label>
+
+            {{ field }}
+
+            {% if field.help_text %}
+                <small class="muted">
+                    {{ field.help_text }}
+                </small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <small class="error">
+                    {{ error }}
+                </small>
+            {% endfor %}
+        </p>
+    {% endfor %}
+
+    <button type="submit" class="btn">Sign Up</button>
+</form>
+```
+
+</div>
+
+{% endblock %}
